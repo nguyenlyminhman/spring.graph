@@ -28,12 +28,16 @@ dependencies {
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-//	implementation group: 'com.graphql-java-kickstart', name: 'graphql-spring-boot-starter', version: '11.0.0'
-//	implementation group: 'com.graphql-java-kickstart', name: 'graphql-java-tools', version: '11.0.0'
-//	implementation group: 'com.graphql-java-kickstart', name: 'graphiql-spring-boot-starter', version: '11.0.0'
-implementation group: 'com.graphql-java', name: 'graphiql-spring-boot-starter', version: '5.0.2'
-implementation group: 'com.graphql-java', name: 'graphql-spring-boot-starter', version: '5.0.2'
-implementation group: 'com.graphql-java', name: 'graphql-java-tools', version: '5.0.0'
+	implementation group: 'com.graphql-java-kickstart', name: 'graphql-spring-boot-starter', version: '11.0.0'
+	implementation group: 'com.graphql-java-kickstart', name: 'graphql-java-tools', version: '11.0.0'
+	implementation group: 'com.graphql-java-kickstart', name: 'graphiql-spring-boot-starter', version: '11.0.0'
+	// https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator
+	implementation group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.1.5.Final'
+
+
+//implementation group: 'com.graphql-java', name: 'graphiql-spring-boot-starter', version: '5.0.2'
+//implementation group: 'com.graphql-java', name: 'graphql-spring-boot-starter', version: '5.0.2'
+//implementation group: 'com.graphql-java', name: 'graphql-java-tools', version: '5.0.0'
 }
 
 test {
