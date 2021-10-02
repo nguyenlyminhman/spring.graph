@@ -1,0 +1,7 @@
+enum ToDoStatus {
+    CREATED
+    COMPLETED
+    IN_PROGRESS
+    OVERDUED
+    CANCELED
+}

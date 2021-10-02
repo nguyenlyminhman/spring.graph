@@ -1,3 +1,35 @@
 type Todo {
     id: ID!
+    title: String
+    status: ToDoStatus
+    startDate: String
+    endDate: String
+    description: String
+    completedDate: String
+    completed: Boolean
+    category: Category
+}
+
+input ToDoInput {
+    title: String!
+    status: ToDoStatus!
+    startDate: String!
+    endDate: String!
+    description: String
+    categoryId: ID!
+}
+
+extend type Query {
+    getAllToDo: [Todo]
+    getOneToDo(id: ID!) : Todo
+    getToDoByCategoryId(categoryId: ID!) : [Todo]
+    getAllCompleteToDo: [Todo]
+    getOverDueToDos: [Todo]
+}
+
+extend type Mutation {
+    createToDo(input: ToDoInput!) : Todo
+    updateToDo(id: ID!, input: ToDoInput!) : Todo
+    deleteToDo(id: ID!): Todo
+    completeToDo(id: ID!, completedDate: String!) : Todo
 }
