@@ -8,11 +8,11 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "todos")
+@Table(name = "todo_list")
 public class Todo {
     @Id
-    @SequenceGenerator(name = "graphl_todo_seq", sequenceName = "graphl_todo_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "graphl_todo_seq")
+    @SequenceGenerator(name = "graphql_todo_list_seq", sequenceName = "graphql_todo_list_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "graphql_todo_list_seq")
     private Long id;
 
     @Column(name = "title")
@@ -40,5 +40,9 @@ public class Todo {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Users createdBy;
 
 }

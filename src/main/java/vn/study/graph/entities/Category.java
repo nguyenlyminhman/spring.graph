@@ -9,8 +9,8 @@ import javax.persistence.*;
 @Table(name = "categories")
 public class Category {
     @Id
-    @SequenceGenerator(name = "graphl_categories_seq", sequenceName = "graphl_categories_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "graphl_categories_seq")
+    @SequenceGenerator(name = "graphql_categories_seq", sequenceName = "graphql_categories_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "graphql_categories_seq")
     private Long id;
 
     @Column(name = "name")
