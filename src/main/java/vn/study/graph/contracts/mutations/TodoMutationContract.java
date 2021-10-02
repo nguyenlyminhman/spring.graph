@@ -1,8 +1,6 @@
 package vn.study.graph.contracts.mutations;
 
-import vn.study.graph.entities.Category;
 import vn.study.graph.entities.Todo;
-import vn.study.graph.input.CategoryInput;
 import vn.study.graph.input.ToDoInput;
 
 public interface TodoMutationContract {

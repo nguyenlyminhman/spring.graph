@@ -1,6 +1,5 @@
 package vn.study.graph.contracts.queries;
 
-import vn.study.graph.entities.Category;
 import vn.study.graph.entities.Todo;
 
 import java.util.List;

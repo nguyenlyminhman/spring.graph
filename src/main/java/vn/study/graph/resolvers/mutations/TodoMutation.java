@@ -11,7 +11,6 @@ import vn.study.graph.input.ToDoInput;
 
 
 @Component
-@Validated
 public class TodoMutation implements GraphQLMutationResolver {
 
     @Autowired
