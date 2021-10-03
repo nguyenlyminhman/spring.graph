@@ -26,8 +26,8 @@ public class Users {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "active")
-    private String active;
+    @Column(name = "active", columnDefinition = "Boolean")
+    private Boolean active=true;
 
     @Column(name = "created_at")
     private String createdAt;

@@ -14,11 +14,15 @@ public class UsersQuery implements GraphQLQueryResolver {
     @Autowired
     private UsersQueryContract usersQueryContract;
 
-    List<Users> getAllUser(){
-        return usersQueryContract.getAllUser();
+    List<Users> getActiveUsersList(){
+        return usersQueryContract.getActiveUsersList();
     }
 
-    Users getOneUser(Long id){
-        return usersQueryContract.getOneUser(id);
+    List<Users> getDeActiveUsersList(){
+        return usersQueryContract.getDeActiveUsersList();
+    }
+
+    Users getUserByEmail(String email){
+        return usersQueryContract.getUserByEmail(email);
     }
 }

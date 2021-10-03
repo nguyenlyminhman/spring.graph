@@ -4,26 +4,39 @@ type Users {
     email: String
     fullName: String
     password: String
-    active: String
+    active: Boolean
     createdAt: String
     updatedAt: String
 }
 
-input UserInput {
+input UserInfoInput {
     userName: String!
     password: String!
-    confirmPassword: String!
     fullName: String!
-    email: String
+    email: String!
+}
+
+input UserUpdateInfoInput {
+    userName: String!
+    fullName: String!
+}
+
+input UserChangePasswordInput {
+    oldPassword: String!
+    newPassword: String!
+    email: String!
 }
 
 extend type Query{
-    getAllUser: [Users]
-    getOneUser(id: ID!): Users
+    getActiveUsersList: [Users]
+    getDeActiveUsersList: [Users]
+    getUserByEmail(email: String!): Users
 }
 
 extend type Mutation {
-    createUser(input: UserInput!): Users
-    updateUser(id: ID!, input: UserInput!): Users
-    deleteUser(id: ID!): Users
+    createUser(input: UserInfoInput!): Users
+    updateUserInfo(email: String!, input: UserUpdateInfoInput!): Users
+    activeUser(email: String!): Users
+    deActiveUser(email: String!): Users
+    updateUserPassword(input: UserChangePasswordInput!): Users
 }

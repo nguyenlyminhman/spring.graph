@@ -7,11 +7,9 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-public class UserInput {
+public class UserInfoInput {
     private String userName;
     private String password;
-    private String confirmPassword;
     private String  fullName;
     private String email;
-
 }
