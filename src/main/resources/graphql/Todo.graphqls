@@ -8,15 +8,16 @@ type Todo {
     completedDate: String
     completed: Boolean
     category: Category
+    users: Users
 }
 
 input ToDoInput {
     title: String!
-    status: ToDoStatus!
     startDate: String!
     endDate: String!
     description: String
     categoryId: ID!
+    userId: ID!
 }
 
 extend type Query {

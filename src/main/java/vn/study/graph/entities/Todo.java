@@ -1,13 +1,17 @@
 package vn.study.graph.entities;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import vn.study.graph.enums.ToDoStatus;
 
 import javax.persistence.*;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "todo_list")
 public class Todo {
     @Id
@@ -37,12 +41,15 @@ public class Todo {
     @Column(name = "completed")
     private Boolean completed = false;
 
+    @Column(name = "active")
+    private Boolean active = true;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Users createdBy;
+    @JoinColumn(name = "users_id")
+    private Users users;
 
 }
