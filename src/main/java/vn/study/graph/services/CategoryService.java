@@ -11,7 +11,6 @@ import vn.study.graph.entities.Category;
 import vn.study.graph.input.CategoryInput;
 import vn.study.graph.repositories.CategoryRepository;
 
-import javax.persistence.EntityExistsException;
 import java.util.List;
 import java.util.Optional;
 

@@ -3,6 +3,7 @@ package vn.study.graph.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -18,5 +19,8 @@ public class Category {
 
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
+
+    @OneToMany(mappedBy = "category")
+    private List<Todo> todoList;
 
 }

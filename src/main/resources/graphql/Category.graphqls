@@ -2,6 +2,7 @@ type Category {
     id: ID!
     name: String
     description: String
+    todoList: [Todo]
 }
 
 type Query {
