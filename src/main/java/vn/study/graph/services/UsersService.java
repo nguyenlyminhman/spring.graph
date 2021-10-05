@@ -69,7 +69,16 @@ public class UsersService implements UsersQueryContract, UsersMutationContract {
 
     @Override
     public Users updateUserPassword(UserChangePasswordInput input) {
-        return null;
+        Users user = this.getUserByEmail(input.getEmail());
+        String currentPass = user.getPassword();
+        String inputPass = input.getOldPassword();
+        String newPass = input.getNewPassword();
+        if( !currentPass.equals(inputPass)){
+            throw new EntityException("Not updated", "oldPassword");
+        }
+        user.setPassword(newPass);
+        repository.save(user);
+        return user;
     }
 
     @Override

@@ -1,11 +1,16 @@
 package vn.study.graph.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "users")
 public class Users {
 
@@ -34,5 +39,8 @@ public class Users {
 
     @Column(name = "updated_at")
     private String updatedAt;
+
+    @OneToMany(mappedBy = "users")
+    private List<Todo> todoList;
 
 }
