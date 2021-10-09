@@ -9,7 +9,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 public class Application {
 
 	public static void main(String[] args) {
-		System.out.println("dsaf");
 		SpringApplication.run(Application.class, args);
 	}
 

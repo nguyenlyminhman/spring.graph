@@ -24,7 +24,7 @@ public class CategoryService implements CategoryQueryContract, CategoryMutationC
 
     @Override
     public Category createCategory(CategoryInput input) {
-        Optional<Category> check = categoryRepository.checkExistName(input.getName());
+        Optional<Category> check = categoryRepository.checkExistName(input.getName() );
         if(check.isPresent()){
             throw new GraphQLException(input.getName() + " is exist");
         }
