@@ -11,7 +11,6 @@ import vn.study.graph.enums.ToDoStatus;
 @Data
 @Setter
 @Getter
-@AllArgsConstructor
 public class ToDoInput {
     private  String title;
     private ToDoStatus status;
