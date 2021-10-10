@@ -3,6 +3,8 @@ package vn.study.graph.resolvers.mutations;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import vn.study.graph.auth.domains.AuthResponse;
+import vn.study.graph.auth.input.AuthInput;
 import vn.study.graph.contracts.mutations.UsersMutationContract;
 import vn.study.graph.entities.Users;
 import vn.study.graph.input.UserChangePasswordInput;
@@ -29,5 +31,8 @@ public class UsersMutation implements GraphQLMutationResolver {
     }
     Users updateUserPassword(UserChangePasswordInput input){
         return usersMutationContract.updateUserPassword(input);
+    }
+    AuthResponse authUser(AuthInput input){
+        return usersMutationContract.authUser(input);
     }
 }

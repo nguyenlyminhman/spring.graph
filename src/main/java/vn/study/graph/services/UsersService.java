@@ -3,6 +3,11 @@ package vn.study.graph.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import vn.study.graph.auth.domains.AuthResponse;
+import vn.study.graph.auth.input.AuthInput;
+import vn.study.graph.auth.services.AuthService;
+import vn.study.graph.auth.utils.JwtUser;
+import vn.study.graph.auth.utils.JwtUtils;
 import vn.study.graph.contracts.mutations.UsersMutationContract;
 import vn.study.graph.contracts.queries.UsersQueryContract;
 import vn.study.graph.entities.Users;
@@ -20,6 +25,12 @@ public class UsersService implements UsersQueryContract, UsersMutationContract {
 
     @Autowired
     private UsersRepository repository;
+
+    @Autowired
+    private AuthService authService;
+
+    @Autowired
+    private JwtUtils jwtUtils;
 
     @Override
     public Users createUser(UserInfoInput input) {
@@ -99,4 +110,19 @@ public class UsersService implements UsersQueryContract, UsersMutationContract {
         }
         return existUser.get();
     }
+
+    @Override
+    public AuthResponse authUser(AuthInput input) {
+        boolean auth = authService.AuthAttempt(input.getEmail(), input.getPassword());
+        if(!auth){
+            throw new EntityException("auth error", input.getEmail());
+        }
+
+        JwtUser jwtUser = new JwtUser();
+        jwtUser.setEmail(input.getEmail());
+
+        String token = jwtUtils.generate(jwtUser);
+        return new AuthResponse(token);
+    }
+
 }

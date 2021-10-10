@@ -10,6 +10,15 @@ type Users {
     todoList: [Todo]
 }
 
+type AuthResponse {
+    token: String
+}
+
+input AuthInput {
+    email: String!
+    password: String!
+}
+
 input UserInfoInput {
     userName: String!
     password: String!
@@ -35,6 +44,7 @@ extend type Query{
 }
 
 extend type Mutation {
+    authUser (input: AuthInput!): AuthResponse
     createUser(input: UserInfoInput!): Users
     updateUserInfo(email: String!, input: UserUpdateInfoInput!): Users
     activeUser(email: String!): Users

@@ -27,4 +27,7 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
     @Modifying
     @Query(value = "Update users set active=false where email=?1", nativeQuery = true)
     int deActiveUser(String email);
+
+    @Query(value = "Select * from Users u where u.active=true and u.email=?1", nativeQuery = true)
+    Optional<Users> getActiveUserByMail(String email);
 }
