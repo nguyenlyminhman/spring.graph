@@ -1,3 +1,28 @@
 type Permission {
     id: ID!
+    name: String!
+    description: String
+    active: Boolean
+}
+
+input UpdatePermissionInput{
+    id: ID!
+    name: String
+    description: String
+}
+
+input CreatePermissionInput{
+    name: String!
+    description: String
+}
+
+extend type Query {
+    getAllPermission: [Permission]
+    getPermissionById(id: ID!): Permission
+}
+
+extend type Mutation {
+    createPermission(input: CreatePermissionInput!): Permission
+    updatePermissionInfo(input: UpdatePermissionInput!): Permission
+    updatePermissionStatusById(input: UpdatePermissionInput!): Permission
 }
