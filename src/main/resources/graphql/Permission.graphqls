@@ -24,5 +24,6 @@ extend type Query {
 extend type Mutation {
     createPermission(input: CreatePermissionInput!): Permission
     updatePermissionInfo(input: UpdatePermissionInput!): Permission
-    updatePermissionStatusById(input: UpdatePermissionInput!): Permission
+    activePermissionStatusById(input: UpdatePermissionInput!): Permission
+    deactivePermissionStatusById(input: UpdatePermissionInput!): Permission
 }

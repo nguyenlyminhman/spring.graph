@@ -22,7 +22,11 @@ public class PermissionMutation implements GraphQLMutationResolver {
         return permissionMutationContract.updatePermissionInfo(input);
     }
 
-    Permission updatePermissionStatusById(UpdatePermissionInput input){
-        return permissionMutationContract.updatePermissionStatusById(input);
+    Permission activePermissionStatusById(UpdatePermissionInput input){
+        return permissionMutationContract.activePermissionStatusById(input);
+    }
+
+    Permission deactivePermissionStatusById(UpdatePermissionInput input){
+        return permissionMutationContract.deactivePermissionStatusById(input);
     }
 }

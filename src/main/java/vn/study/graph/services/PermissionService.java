@@ -6,11 +6,13 @@ import org.springframework.transaction.annotation.Transactional;
 import vn.study.graph.contracts.mutations.PermissionMutationContract;
 import vn.study.graph.contracts.queries.PermissionQueryContract;
 import vn.study.graph.entities.Permission;
+import vn.study.graph.exception_handlers.EntityException;
 import vn.study.graph.input.CreatePermissionInput;
 import vn.study.graph.input.UpdatePermissionInput;
 import vn.study.graph.repositories.PermissionRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -21,26 +23,65 @@ public class PermissionService implements PermissionMutationContract, Permission
 
     @Override
     public Permission createPermission(CreatePermissionInput input) {
-        return null;
+        String name = input.getName();
+        Optional<Permission> permission = permissionRepository.checkPermissionName(name);
+        if(permission.isPresent())
+            throw new EntityException("Permission existed", name);
+        Permission newPermission = new Permission();
+        newPermission.setName(input.getName());
+        newPermission.setDescription(input.getDescription());
+        newPermission.setActive(true);
+        permissionRepository.save(newPermission);
+        return newPermission;
     }
 
     @Override
     public Permission updatePermissionInfo(UpdatePermissionInput input) {
-        return null;
+        Long id = input.getId();
+        Optional<Permission> permission = permissionRepository.findById(id);
+        if(!permission.isPresent())
+            throw new EntityException("Permission not found", "Id");
+
+        Permission permissionInfo = permission.get();
+        permissionInfo.setName(input.getName());
+        permissionInfo.setDescription(input.getDescription());
+//       int a = permissionRepository.updatePermissionInfo( id, input.getName(), input.getDescription());
+       return permissionInfo;
     }
 
     @Override
-    public Permission updatePermissionStatusById(UpdatePermissionInput input) {
-        return null;
+    public Permission activePermissionStatusById(UpdatePermissionInput input) {
+        Optional<Permission> permission = permissionRepository.findById(input.getId());
+        if(!permission.isPresent())
+            throw new EntityException("Id not found", "Id");
+        Permission activePermission = permission.get();
+        activePermission.setActive(true);
+        permissionRepository.save(activePermission);
+        return activePermission;
+    }
+
+    @Override
+    public Permission deactivePermissionStatusById(UpdatePermissionInput input) {
+        Optional<Permission> permission = permissionRepository.findById(input.getId());
+        if(!permission.isPresent())
+            throw new EntityException("Id not found", "Id");
+
+        Permission deactivePermission = permission.get();
+        deactivePermission.setActive(false);
+        permissionRepository.save(deactivePermission);
+        return deactivePermission;
     }
 
     @Override
     public List<Permission> getAllPermission() {
-        return null;
+        return permissionRepository.findAll();
     }
 
     @Override
     public Permission getPermissionById(Long id) {
-        return null;
+        Optional<Permission> permissions = permissionRepository.findById(id);
+        if(!permissions.isPresent())
+            throw new EntityException("Permission not found", id);
+        return permissions.get();
     }
 }
